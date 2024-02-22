@@ -225,6 +225,3 @@ const my = {
 my.setupEventListeners();
 
 window.my = my;
-
-
-export { my };
