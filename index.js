@@ -1,7 +1,7 @@
 // Define constants
-export const syncAuthCode = 'syncAuthCode';
-export const syncUserConsentData = 'syncUserConsentData';
-export const syncTradePayData = 'syncTradePayData';
+// export const syncAuthCode = 'syncAuthCode';
+// export const syncUserConsentData = 'syncUserConsentData';
+// export const syncTradePayData = 'syncTradePayData';
 
 
 const my = {
@@ -149,27 +149,27 @@ const my = {
   },
 
 
-  getTradePay: function (data, callbacks) {
-    window.flutter_inappwebview.callHandler('my.getTradePay', data)
-      .then(result => {
-        if (result === null) {
-          console.error("No trade payment response received.");
-          if (callbacks && typeof callbacks.fail === 'function') {
-            callbacks.fail("No trade payment response received.");
-          }
-        } else {  
-          if (callbacks && typeof callbacks.success === 'function') {
-            callbacks.success(result);
-          }
-        }
-      })
-      .catch(error => {
-        console.error("Error processing trade payment", error);
-        if (callbacks && typeof callbacks.fail === 'function') {
-          callbacks.fail(error);
-        }
-      });
-  },
+  // getTradePay: function (data, callbacks) {
+  //   window.flutter_inappwebview.callHandler('my.getTradePay', data)
+  //     .then(result => {
+  //       if (result === null) {
+  //         console.error("No trade payment response received.");
+  //         if (callbacks && typeof callbacks.fail === 'function') {
+  //           callbacks.fail("No trade payment response received.");
+  //         }
+  //       } else {  
+  //         if (callbacks && typeof callbacks.success === 'function') {
+  //           callbacks.success(result);
+  //         }
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error("Error processing trade payment", error);
+  //       if (callbacks && typeof callbacks.fail === 'function') {
+  //         callbacks.fail(error);
+  //       }
+  //     });
+  // },
 
 
   syncTradePay: function () {
