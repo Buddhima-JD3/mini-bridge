@@ -224,4 +224,5 @@ const my = {
 
 my.setupEventListeners();
 
+// export removed
 window.my = my;
