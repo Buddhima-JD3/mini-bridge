@@ -117,7 +117,7 @@ Use this API to request the authorization code.
 #### Input Parameters
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   clientId |   String |   Y | Client Id which is generated from server when on-boarding |
 |   redirectUrl|   String |  Y |  Redirect URL of the merchant which is used in on-boarding process |
 
@@ -137,7 +137,7 @@ Use this API to synchronize the authorization code via this callback.
 #### Success Callback Function
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   code |   String |   Y | Authorization Code  |
 
 
@@ -159,7 +159,7 @@ Use this API to request the user consent data via this callback.
 #### Input Parameters
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   token |   String |   Y |  The token which is granted from authorization server
 
 ### 3.4 syncUserConsentData
@@ -177,7 +177,7 @@ Use this API to request the user consent data via this callback.
 #### Success Callback Function
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   userConsentData |   Map<string,string> |   Y | User's Collected Data  |
 
 
@@ -205,7 +205,7 @@ Use this API to initiate the payment flow via this callback.
 #### Input Parameters
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   orderId |   String |   Y | Merchant generated orderId  |
 |   currencyCode|   String |  N | Currency Code  |
 |   amount|   String |  Y | Total transaction amount |
@@ -227,7 +227,7 @@ Use this API to synchronize payment response detail via this callback.
 #### Success Callback Function
 
 | Property | Type     | Required | Description |
-|----------|----------|----------| ----------|
+|----------|----------|:----------:| ----------|
 |   auxNo |   String |   Y | Transaction Reference Number  |
 
 
