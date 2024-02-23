@@ -1,12 +1,12 @@
 # WMA-Bridge Communication
 
-`index.js` is a JavaScript library designed to facilitate seamless communication between web applications and mobile applications. It provides structured methods to handle authorization codes, user consent data, and trade payment data with callback functions for success and failure scenarios.
+This is a JavaScript library designed to facilitate seamless communication between mini-applications and mobile applications. It provides structured methods to handle authorization codes, user consent data, and trade payment data with callback functions for success and failure scenarios.
 
 ## Features
 
 - **Authorization Code Grant**: Retrieve authorization codes seamlessly.
 - **User Consent Management**: Efficiently manage user consent data.
-- **Trade Payment Integration**: Simplify handling trade payment details.
+- **Trade Payment Integration**: Simplify handling transaction details.
 - **Asynchronous Communication**: Use callbacks to handle asynchronous responses.
 
 
@@ -20,7 +20,7 @@ To use JS bridge, refer to the following steps:
 
 ```html
 <head>
-  <script src="https://cdn.jsdelivr.net/gh/Buddhima-JD3/wma-bridge@master/indes.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Buddhima-JD3/wma-bridge@master/index.js" type="module"></script>
 </head>
 ```
 or
@@ -46,13 +46,41 @@ To use JS bridge in plain html, you need to import the file   `index.js` from `w
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/gh/Buddhima-JD3/wma-bridge@master/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Buddhima-JD3/wma-bridge@master/index.js" type="module"></script>
   </head>
   <body>
-    <script>
-     ///TODO
-    </script>
-  </body>
+  <button id="getAuthCodeBtn">Get Auth Code</button>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.my && typeof my.initiate === 'function') {
+        my.initiate({
+          'AuthCode': {
+            success: function (data) {
+              console.log('AuthCode received:', data);
+              document.dispatchEvent(new CustomEvent('authCodeSuccess', { detail: data }));
+            },
+            fail: function (err) {
+              console.error('Auth Code Sync Error:', err);
+              document.dispatchEvent(new CustomEvent('authCodeFailure', { detail: err }));
+            }
+          },
+        });
+      }
+
+      document.getElementById('getAuthCodeBtn').addEventListener('click', function () {
+        if (window.my && typeof my.getAuthCode === 'function') {
+          const data = {
+            clientId: 'clientId',
+            redirectUrl: 'redirectUrl'
+          };
+          my.getAuthCode(data);
+        }
+      });
+
+    });
+  </script>
+</body>
 </html>
 ```
 
@@ -60,7 +88,7 @@ or
 
 ### Native mini programs
 
-To use JS bridge in native mini programs, you need to import the `wma-bridge` package on the mini program page. Then you can call the JSAPIs exported by the package. To learn more, check the sample code below.
+To use JS bridge in native mini programs, you need to import the `wma-bridge` package on the mini program page. Then you can call the JSAPIs exported by the package. To learn more, check the sample code below. 
 
 **Sample code**
 
@@ -77,8 +105,8 @@ ngOnInit(): void {
     });
     
     const data = {
-      clientId: this.clientId,
-      redirectUrl: this.redirectUrl
+      clientId: 'clientId',
+      redirectUrl: 'redirectUrl'
     };
     my.getAuthCode(JSON.stringify(data), {
       success: function (res) {
@@ -123,7 +151,7 @@ Use this API to request the authorization code.
 
 ### 3.2 syncAuthCode
 
-Use this API to synchronize the authorization code via this callback.
+Use this API to synchronize the authorization code via this callback. Use the OpenAPI endpoints to exhange the code to a token.
 
 ```javascript
     my.initiate({
@@ -164,7 +192,7 @@ Use this API to request the user consent data via this callback.
 
 ### 3.4 syncUserConsentData
 
-Use this API to request the user consent data via this callback.
+Use this API to synchronize the user consent data via this callback.
 
 ```javascript
      my.initiate({
@@ -213,7 +241,7 @@ Use this API to initiate the payment flow via this callback.
 
 ### 3.6 syncTradePayData
 
-Use this API to synchronize payment response detail via this callback.
+Use this API to synchronize payment response details via this callback.
 
 ```javascript
      my.initiate({
@@ -233,6 +261,3 @@ Use this API to synchronize payment response detail via this callback.
 
 ## License
 MIT
-
-
-
