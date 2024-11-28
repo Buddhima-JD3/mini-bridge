@@ -127,6 +127,8 @@ ngOnInit(): void {
 Use this API to request the authorization code.
 
 ```javascript
+import { my } from 'wma-bridge'
+
     const data = {
           clientId: 'clientId',
           redirectUrl: 'redirectUrl'
@@ -146,14 +148,16 @@ Use this API to request the authorization code.
 
 | Property | Type     | Required | Description |
 |----------|----------|:----------:| ----------|
-|   clientId |   String |   Y | Client Id which is generated from server when on-boarding |
-|   redirectUrl|   String |  Y |  Redirect URL of the merchant which is used in on-boarding process |
+|   clientId |   String |   Y | ClientId Which is Generated from Server When On-boarding Process |
+|   redirectUrl|   String |  Y |  Redirect URL of the Merchant Which is Used in On-boarding Process |
 
 ### 3.2 syncAuthCode
 
 Use this API to synchronize the authorization code via this callback. Use the OpenAPI endpoints to exhange the code to a token.
 
 ```javascript
+import { my, syncAuthCode } from 'wma-bridge'
+
     my.initiate({
       [syncAuthCode]: {
         success: (res) => this.customMethod(res),
@@ -168,52 +172,13 @@ Use this API to synchronize the authorization code via this callback. Use the Op
 |----------|----------|:----------:| ----------|
 |   code |   String |   Y | Authorization Code  |
 
-
-### 3.3 my.getUserConsent
-
-Use this API to request the user consent data via this callback.
-
-```javascript
-    my.getUserConsent('token', {
-      success: function (res) {
-        console.log('Success:', res);
-      },
-      fail: function (err) {
-        console.error('Fail:', err);
-      }
-    });
-```
-
-#### Input Parameters
-
-| Property | Type     | Required | Description |
-|----------|----------|:----------:| ----------|
-|   token |   String |   Y |  The token which is granted from authorization server
-
-### 3.4 syncUserConsentData
-
-Use this API to synchronize the user consent data via this callback.
-
-```javascript
-     my.initiate({
-      [syncUserConsentData]: {
-        success: (data) => this.customMethod(res),
-        fail: (err) => alert('Custom Error Message' + err),
-      },
-    });
-```
-#### Success Callback Function
-
-| Property | Type     | Required | Description |
-|----------|----------|:----------:| ----------|
-|   userConsentData |   Map<string,string> |   Y | User's Collected Data  |
-
-
-### 3.5 my.getTradePay
+### 3.3 my.getTradePay
 
 Use this API to initiate the payment flow via this callback.
 
 ```javascript
+import { my } from 'wma-bridge'
+
     const data = {
           data.orderId = 'orderId';
           data.currencyCode = 'currencyCode';
@@ -234,20 +199,22 @@ Use this API to initiate the payment flow via this callback.
 
 | Property | Type     | Required | Description |
 |----------|----------|:----------:| ----------|
-|   orderId |   String |   Y | Merchant generated orderId  |
+|   orderId |   String |   Y | Merchant Generated OrderId  |
 |   currencyCode|   String |  N | Currency Code  |
-|   amount|   String |  Y | Total transaction amount |
-|   token|   String |  Y |  The token which is granted from authorization server |
+|   amount|   String |  Y | Total Transaction Amount |
+|   token|   String |  Y |  The Token Which is Granted from Authorization Server |
 
-### 3.6 syncTradePayData
+### 3.4 syncTradePayData
 
 Use this API to synchronize payment response details via this callback.
 
 ```javascript
+import { my, syncTradePayData } from 'wma-bridge'
+
      my.initiate({
       [syncTradePayData]: {
-        success: (data) => this.displayTransactionDetails(data),
-        fail: (err) => alert('User Consent Sync Error:' + err),
+        success: (res) => this.customMethod(res),
+        fail: (err) => console.error('Custom Error Message', err),
       },
     });
 ```
@@ -261,3 +228,6 @@ Use this API to synchronize payment response details via this callback.
 
 ## License
 MIT
+
+
+
